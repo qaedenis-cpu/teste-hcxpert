@@ -45,3 +45,58 @@ Then("devo visualizar o produto adicionado", () => {
       .should("have.length.greaterThan", 0);
 
 });
+
+When("visualizo o carrinho vazio", () => {
+
+    cy.visit("/view_cart");
+
+});
+
+
+Then("devo visualizar mensagem de carrinho vazio", () => {
+
+    cy.get("body")
+      .should("contain.text", "Cart is empty");
+
+});
+
+
+When("prossigo para checkout", () => {
+
+    cy.contains("Proceed To Checkout")
+      .should("be.visible")
+      .click();
+
+});
+
+
+Then("devo visualizar a página de checkout", () => {
+
+    cy.get("body")
+      .should("contain.text", "Proceed To Checkout");
+
+});
+
+
+When("tento prosseguir para checkout", () => {
+
+    cy.get("body").then(($body) => {
+
+        if ($body.text().includes("Proceed To Checkout")) {
+
+            cy.contains("Proceed To Checkout")
+              .click({ force: true });
+
+        }
+
+    });
+
+});
+
+
+Then("não devo conseguir finalizar a compra", () => {
+
+    cy.get("body")
+      .should("contain.text", "Cart is empty");
+
+});
