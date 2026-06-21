@@ -94,6 +94,7 @@ When("tento prosseguir para checkout", () => {
 });
 
 
+
 Then("não devo conseguir finalizar a compra", () => {
 
     cy.get("body")
