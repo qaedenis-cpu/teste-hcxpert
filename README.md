@@ -2,47 +2,84 @@
 
 Projeto desenvolvido utilizando:
 
-- Cypress
-- Cucumber (BDD)
-- JavaScript
-- Esbuild
+* Cypress
+* Cucumber (BDD)
+* JavaScript
+* Esbuild
+
+---
 
 ## Funcionalidades automatizadas
 
 ### Web
 
-- Login com sucesso
-- Login inválido
-- Busca de produto existente
-- Busca de produto inexistente
-- Adicionar produto ao carrinho
+#### Login
+
+* Login com sucesso
+* Login inválido
+
+#### Busca
+
+* Busca de produto existente
+* Busca de produto inexistente
+
+#### Carrinho
+
+* Adicionar produto ao carrinho
+* Tentar visualizar carrinho vazio
+* Realizar checkout com produto no carrinho
+* Tentar realizar checkout sem produtos
 
 ### API
 
-- GET na API do Trello
-- Validação do status code
-- Exibição do campo:
-  response.body.data.list.name
+* GET na API do Trello
+* Validação do status code
+* Exibição do campo `response.body.data.list.name`
+
+---
 
 ## Estrutura do projeto
 
-cypress/
+```text
+cypress
 
-├── e2e/features
+└── e2e
+    └── features
 
-├── pages
+        ├── api
 
-├── fixtures
+        ├── busca
 
-└── support
+        ├── carrinho
 
-## Execução
+        └── login
 
-Instalar dependências:
+fixtures
+
+cypress.config.js
+
+package.json
+```
+
+---
+
+## Instalação
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/qaedenis-cpu/teste-hcxpert.git
+```
+
+Instale as dependências:
 
 ```bash
 npm install
 ```
+
+---
+
+## Execução
 
 Abrir o Cypress:
 
