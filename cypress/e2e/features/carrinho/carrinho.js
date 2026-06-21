@@ -100,3 +100,10 @@ Then("não devo conseguir finalizar a compra", () => {
       .should("contain.text", "Cart is empty");
 
 });
+
+Then("devo visualizar o produto selecionado", () => {
+
+    cy.get(".cart_description")
+      .should("exist");
+
+});
