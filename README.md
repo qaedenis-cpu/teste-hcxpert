@@ -1,4 +1,4 @@
-npm run cy:run# Teste Técnico HCXpert
+## Teste Técnico HCXpert
 
 Projeto de automação de testes utilizando:
 
