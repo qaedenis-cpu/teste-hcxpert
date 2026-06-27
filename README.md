@@ -1,94 +1,113 @@
-# Teste Técnico HCXpert
+npm run cy:run# Teste Técnico HCXpert
 
-Projeto desenvolvido utilizando:
+Projeto de automação de testes utilizando:
 
-* Cypress
-* Cucumber (BDD)
-* JavaScript
-* Esbuild
+- Cypress
+- Cucumber (BDD)
+- JavaScript
+- Page Object Model (POM)
+- Esbuild
 
 ---
 
-## Funcionalidades automatizadas
+## Objetivo
+
+Este projeto tem como objetivo automatizar fluxos de testes **Web e API**, aplicando boas práticas de automação como:
+
+- BDD com Gherkin
+- Page Object Model
+- Reutilização de steps
+- Separação de responsabilidades
+- Testes end-to-end
+
+---
+
+## Cenários automatizados
 
 ### Web
 
 #### Login
+- Login com sucesso
+- Login com credenciais inválidas
 
-* Login com sucesso
-* Login inválido
+#### Busca de produtos
+- Busca de produto existente
+- Busca de produto inexistente
 
-#### Busca
+#### Carrinho de compras
+- Adicionar produto ao carrinho
+- Visualizar carrinho vazio
+- Realizar checkout com produto no carrinho
+- Tentar realizar checkout sem produtos
 
-* Busca de produto existente
-* Busca de produto inexistente
-
-#### Carrinho
-
-* Adicionar produto ao carrinho
-* Tentar visualizar carrinho vazio
-* Realizar checkout com produto no carrinho
-* Tentar realizar checkout sem produtos
+---
 
 ### API
 
-* GET na API do Trello
-* Validação do status code
-* Exibição do campo `response.body.data.list.name`
+#### Trello API
+- Realizar requisição GET em endpoint de actions
+- Validar status code da resposta
+- Validar retorno do campo `data.list.name`
 
 ---
 
-## Estrutura do projeto
+## Arquitetura do projeto
 
 ```text
-cypress
+cypress/
+├── e2e/
+│   ├── features/
+│   │   ├── login.feature
+│   │   ├── search.feature
+│   │   ├── add_to_cart.feature
+│   │   └── api_trello.feature
+│   │
+│   └── step_definitions/
+│       ├── loginSteps.js
+│       ├── searchSteps.js
+│       ├── cartSteps.js
+│       ├── apiSteps.js
+│       └── commonSteps.js
+│
+├── support/
+│   └── page_objects/
+│       ├── homePage.js
+│       ├── loginPage.js
+│       ├── productsPage.js
+│       └── cartPage.js
+│
+├── fixtures/
+├── screenshots/
+├── cypress.config.js
+└── package.json
 
-└── e2e
-    └── features
 
-        ├── api
-
-        ├── busca
-
-        ├── carrinho
-
-        └── login
-
-fixtures
-
-cypress.config.js
-
-package.json
-```
-
----
-
-## Instalação
+##  Instalação
 
 Clone o repositório:
 
 ```bash
+
 git clone https://github.com/qaedenis-cpu/teste-hcxpert.git
-```
+
+Acesse a pasta do projeto:
+
+cd teste-hcxpert
 
 Instale as dependências:
 
-```bash
 npm install
-```
 
----
+Execução dos testes
 
-## Execução
+Abrir Cypress em modo interativo
 
-Abrir o Cypress:
-
-```bash
 npm run cy:open
-```
 
-Executar em modo headless:
+Executar testes em modo headless
 
-```bash
 npm run cy:run
-```
+
+Executar um spec específico
+
+npx cypress run --spec "cypress/e2e/features/add_to_cart.feature"
