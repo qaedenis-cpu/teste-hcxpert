@@ -16,14 +16,12 @@ async function setupNodeEvents(on, config) {
 
   on(
     "file:preprocessor",
-
     createBundler({
       plugins: [createEsbuildPlugin(config)],
     })
   );
 
   return config;
-
 }
 
 module.exports = defineConfig({
@@ -34,8 +32,6 @@ module.exports = defineConfig({
 
     specPattern: "cypress/e2e/features/**/*.feature",
 
-    stepDefinitions: "cypress/e2e/step_definitions",
-
     baseUrl: "https://www.automationexercise.com",
 
     async setupNodeEvents(on, config) {
@@ -45,5 +41,15 @@ module.exports = defineConfig({
     },
 
   },
+
+  env: {
+
+    cucumber: {
+
+      stepDefinitions: "cypress/e2e/step_definitions/**/*.js"
+
+    }
+
+  }
 
 });
