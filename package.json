@@ -4,20 +4,17 @@
   "description": "Teste técnico HCXpert - Cypress + Cucumber + JavaScript",
   "author": "Denis Oliveira Santos",
   "license": "ISC",
-
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
-
   "cypress-cucumber-preprocessor": {
     "stepDefinitions": "cypress/e2e/step_definitions/**/*.js"
   },
-
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^24.0.1",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
-    "cypress": "^15.17.0",
+    "cypress": "^15.18.0",
     "esbuild": "^0.28.1"
   }
 }

@@ -1,95 +1,43 @@
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import ProductsPage from "../../support/page_objects/productsPage";
+import CartPage from "../../support/page_objects/cartPage";
 
 When("adiciono o primeiro produto ao carrinho", () => {
-
-    cy.get(".product-image-wrapper")
-      .first()
-      .trigger("mouseover");
-
-    cy.contains("Add to cart")
-      .first()
-      .click();
-
+  ProductsPage.adicionarPrimeiroProduto();
 });
-
 
 When("visualizo o carrinho", () => {
-
-    cy.contains("View Cart")
-      .click();
-
+  CartPage.visualizarCarrinho();
 });
 
-
 Then("devo visualizar o produto adicionado", () => {
-
-    cy.get("#cart_info_table")
-      .should("be.visible");
-
-    cy.get(".cart_description")
-      .should("have.length.greaterThan", 0);
-
+  CartPage.validarProdutoNoCarrinho();
 });
 
 When("visualizo o carrinho vazio", () => {
-
-    cy.visit("/view_cart");
-
+  CartPage.visualizarCarrinho();
 });
-
 
 Then("devo visualizar mensagem de carrinho vazio", () => {
-
-    cy.get("body")
-      .should("contain.text", "Cart is empty");
-
+  CartPage.validarCarrinhoVazio();
 });
-
 
 When("prossigo para checkout", () => {
-
-    cy.contains("Proceed To Checkout")
-      .should("be.visible")
-      .click();
-
+  CartPage.prosseguirCheckout();
 });
-
 
 Then("devo visualizar a página de checkout", () => {
-
-    cy.get("body")
-      .should("contain.text", "Proceed To Checkout");
-
-});
-
-
-When("tento prosseguir para checkout", () => {
-
-    cy.get("body").then(($body) => {
-
-        if ($body.text().includes("Proceed To Checkout")) {
-
-            cy.contains("Proceed To Checkout")
-              .click({ force: true });
-
-        }
-
-    });
-
-});
-
-
-
-Then("não devo conseguir finalizar a compra", () => {
-
-    cy.get("body")
-      .should("contain.text", "Cart is empty");
-
+  CartPage.validarCheckout();
 });
 
 Then("devo visualizar o produto selecionado", () => {
+  CartPage.validarProdutoNoCarrinho();
+});
 
-    cy.get(".cart_description")
-      .should("exist");
+When("tento prosseguir para checkout", () => {
+  CartPage.tentarProsseguirCheckout();
+});
 
+Then("não devo conseguir finalizar a compra", () => {
+  CartPage.validarCarrinhoVazio();
 });

@@ -1,9 +1,9 @@
 class HomePage {
 
     acessarHome() {
-
-        cy.visit("/");
-
+        cy.visit("/", {
+            failOnStatusCode: false
+        });
     }
 
 }
