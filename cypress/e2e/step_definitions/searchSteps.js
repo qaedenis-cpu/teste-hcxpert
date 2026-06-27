@@ -1,12 +1,4 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-
-When("acesso a página de produtos", () => {
-
-    cy.contains("Products")
-      .click();
-
-});
-
+import {When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 When("pesquiso por {string}", (produto) => {
 
