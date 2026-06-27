@@ -1,29 +1,28 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
+import LoginPage from "../../support/page_objects/loginPage";
+
 Given("que estou na página de login", () => {
 
-    cy.visit("/login");
+    LoginPage.acessarPaginaLogin();
 
 });
 
 When("informo email válido", () => {
 
-    cy.get('[data-qa="login-email"]')
-      .type("teste2024@teste.com.br");
+    LoginPage.preencherEmail("teste2024@teste.com.br");
 
 });
 
 When("informo senha válida", () => {
 
-    cy.get('[data-qa="login-password"]')
-      .type("teste");
+    LoginPage.preencherSenha("teste");
 
 });
 
 When("clico em login", () => {
 
-    cy.get('[data-qa="login-button"]')
-      .click();
+    LoginPage.clicarEntrar();
 
 });
 
@@ -34,17 +33,16 @@ Then("devo ser autenticado", () => {
 
 });
 
+
 When("informo email inválido", () => {
 
-    cy.get('[data-qa="login-email"]')
-      .type("fake@fake.com");
+    LoginPage.preencherEmail("fake@fake.com");
 
 });
 
 When("informo senha inválida", () => {
 
-    cy.get('[data-qa="login-password"]')
-      .type("123456");
+    LoginPage.preencherSenha("123456");
 
 });
 
